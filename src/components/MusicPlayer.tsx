@@ -9,17 +9,80 @@ interface Track {
   src: string;
 }
 
+// Base URL générée par Vite (dev + prod, GitHub Pages)
+const BASE_URL = import.meta.env.BASE_URL;
+
 const tracks: Track[] = [
-  { id: 1, title: '14–24 : Les années de l\'ombre', duration: '4:19', cover: '/images/image.png', src: '/music/1.wav' },
-  { id: 2, title: 'L\'enfant qui observait tout', duration: '3:41', cover: '/images/image copy.png', src: '/music/2.wav' },
-  { id: 3, title: 'Partir pour se sauver', duration: '3:34', cover: '/images/image copy copy.png', src: '/music/3.wav' },
-  { id: 4, title: 'Les Anges gardiens', duration: '4:09', cover: '/images/image copy copy copy.png', src: '/music/4.wav' },
-  { id: 5, title: 'Écoute-moi', duration: '4:23', cover: '/images/image copy copy copy copy.png', src: '/music/5.wav' },
-  { id: 6, title: 'Je me choisis', duration: '3:11', cover: '/images/image copy copy copy copy copy.png', src: '/music/6.wav' },
-  { id: 7, title: 'Les femmes que je porte', duration: '3:13', cover: '/images/image copy copy copy copy copy copy.png', src: '/music/7.wav' },
-  { id: 8, title: 'La fille qui guérit', duration: '3:39', cover: '/images/image copy copy copy copy copy copy copy.png', src: '/music/8.wav' },
-  { id: 9, title: 'Libre', duration: '2:50', cover: '/images/image copy copy copy copy copy copy copy copy.png', src: '/music/9.wav' },
-  { id: 10, title: 'Renaître pour les autres', duration: '4:27', cover: '/images/image copy copy copy copy copy copy copy copy copy.png', src: '/music/10.wav' },
+  {
+    id: 1,
+    title: "14–24 : Les années de l'ombre",
+    duration: '4:19',
+    cover: `${BASE_URL}images/image.png`,
+    src: `${BASE_URL}music/1.wav`,
+  },
+  {
+    id: 2,
+    title: "L'enfant qui observait tout",
+    duration: '3:41',
+    cover: `${BASE_URL}images/image copy.png`,
+    src: `${BASE_URL}music/2.wav`,
+  },
+  {
+    id: 3,
+    title: 'Partir pour se sauver',
+    duration: '3:34',
+    cover: `${BASE_URL}images/image copy copy.png`,
+    src: `${BASE_URL}music/3.wav`,
+  },
+  {
+    id: 4,
+    title: 'Les Anges gardiens',
+    duration: '4:09',
+    cover: `${BASE_URL}images/image copy copy copy.png`,
+    src: `${BASE_URL}music/4.wav`,
+  },
+  {
+    id: 5,
+    title: 'Écoute-moi',
+    duration: '4:23',
+    cover: `${BASE_URL}images/image copy copy copy copy.png`,
+    src: `${BASE_URL}music/5.wav`,
+  },
+  {
+    id: 6,
+    title: 'Je me choisis',
+    duration: '3:11',
+    cover: `${BASE_URL}images/image copy copy copy copy copy.png`,
+    src: `${BASE_URL}music/6.wav`,
+  },
+  {
+    id: 7,
+    title: 'Les femmes que je porte',
+    duration: '3:13',
+    cover: `${BASE_URL}images/image copy copy copy copy copy copy.png`,
+    src: `${BASE_URL}music/7.wav`,
+  },
+  {
+    id: 8,
+    title: 'La fille qui guérit',
+    duration: '3:39',
+    cover: `${BASE_URL}images/image copy copy copy copy copy copy copy.png`,
+    src: `${BASE_URL}music/8.wav`,
+  },
+  {
+    id: 9,
+    title: 'Libre',
+    duration: '2:50',
+    cover: `${BASE_URL}images/image copy copy copy copy copy copy copy copy.png`,
+    src: `${BASE_URL}music/9.wav`,
+  },
+  {
+    id: 10,
+    title: 'Renaître pour les autres',
+    duration: '4:27',
+    cover: `${BASE_URL}images/image copy copy copy copy copy copy copy copy copy.png`,
+    src: `${BASE_URL}music/10.wav`,
+  },
 ];
 
 interface MusicPlayerProps {
@@ -33,7 +96,7 @@ export default function MusicPlayer({ isPlaying, setIsPlaying }: MusicPlayerProp
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [isExpanded, setIsExpanded] = useState(false); // vue complète ouverte ?
+  const [isExpanded, setIsExpanded] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
   // Sync avec état parent
@@ -162,7 +225,9 @@ export default function MusicPlayer({ isPlaying, setIsPlaying }: MusicPlayerProp
                           <h3 className="text-white font-light text-sm tracking-wide">
                             {track.title}
                           </h3>
-                          <p className="text-white/50 text-xs mt-0.5">{track.duration}</p>
+                          <p className="text-white/50 text-xs mt-0.5">
+                            {track.duration}
+                          </p>
                         </div>
                       </div>
 
@@ -182,9 +247,7 @@ export default function MusicPlayer({ isPlaying, setIsPlaying }: MusicPlayerProp
         {/* MINI-PLAYER EN BAS */}
         {currentTrack && (
             <div className="fixed bottom-0 left-0 right-0 z-40 px-4 pb-4">
-              <div
-                  className="backdrop-blur-xl bg-white/5 rounded-2xl border border-white/10 shadow-[0_0_30px_rgba(255,79,168,0.35)] flex items-center px-4 py-3"
-              >
+              <div className="backdrop-blur-xl bg-white/5 rounded-2xl border border-white/10 shadow-[0_0_30px_rgba(255,79,168,0.35)] flex items-center px-4 py-3">
                 {/* Zone cliquable pour agrandir */}
                 <button
                     className="flex items-center space-x-3 flex-1 text-left"
@@ -207,7 +270,7 @@ export default function MusicPlayer({ isPlaying, setIsPlaying }: MusicPlayerProp
                   </div>
                 </button>
 
-                {/* Bouton précédent dans le mini-player */}
+                {/* Bouton précédent */}
                 <button
                     onClick={(e) => {
                       e.stopPropagation();
@@ -218,7 +281,7 @@ export default function MusicPlayer({ isPlaying, setIsPlaying }: MusicPlayerProp
                   <SkipBack size={16} className="text-white" />
                 </button>
 
-                {/* Play / pause dans le mini-player */}
+                {/* Play / pause */}
                 <button
                     onClick={(e) => {
                       e.stopPropagation();
@@ -233,7 +296,7 @@ export default function MusicPlayer({ isPlaying, setIsPlaying }: MusicPlayerProp
                   )}
                 </button>
 
-                {/* Next dans le mini-player */}
+                {/* Next */}
                 <button
                     onClick={(e) => {
                       e.stopPropagation();
@@ -250,9 +313,7 @@ export default function MusicPlayer({ isPlaying, setIsPlaying }: MusicPlayerProp
         {/* FULL PLAYER */}
         {isExpanded && currentTrack && (
             <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-              <div
-                  className="backdrop-blur-xl bg-white/10 rounded-3xl p-6 border border-white/20 shadow-[0_0_60px_rgba(255,79,168,0.7)] w-full max-w-sm h-[50vh] flex flex-col"
-              >
+              <div className="backdrop-blur-xl bg-white/10 rounded-3xl p-6 border border-white/20 shadow-[0_0_60px_rgba(255,79,168,0.7)] w-full max-w-sm h-[50vh] flex flex-col">
                 {/* Top bar */}
                 <div className="flex items-center justify-between mb-4">
                   {/* Réduire vers le mini-player */}
@@ -264,7 +325,7 @@ export default function MusicPlayer({ isPlaying, setIsPlaying }: MusicPlayerProp
                     <ChevronDown className="text-white" size={20} />
                   </button>
 
-                  {/* Fermer complètement (stop musique + fermer mini-player) */}
+                  {/* Fermer complètement */}
                   <button
                       onClick={() => {
                         setTrackPlaying(false);
@@ -327,7 +388,7 @@ export default function MusicPlayer({ isPlaying, setIsPlaying }: MusicPlayerProp
                 <div className="mt-auto flex items-center justify-center space-x-6 pb-2">
                   <button
                       onClick={handlePrev}
-                      className="w-12 h-12 rounded-full bg:white/10 bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all active:scale-95"
+                      className="w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all active:scale-95"
                   >
                     <SkipBack className="text-white" size={22} />
                   </button>
@@ -359,7 +420,7 @@ export default function MusicPlayer({ isPlaying, setIsPlaying }: MusicPlayerProp
             ref={audioRef}
             onTimeUpdate={handleTimeUpdate}
             onLoadedMetadata={handleLoadedMetadata}
-            onEnded={handleNext} // passe automatiquement à la suivante
+            onEnded={handleNext}
         />
       </section>
   );

@@ -200,7 +200,7 @@ export default function MusicPlayer({ isPlaying, setIsPlaying }: MusicPlayerProp
       <section className="relative py-16 px-6 pb-32">
         {/* Playlist */}
         <div className="max-w-md mx-auto">
-          <div className="backdrop-blur-xl bg-white/5 rounded-3xl p-6 border border-white/10 shadow-[0_8px_32px_rgba(76,59,204,0.3)]">
+          <div className="backdrop-blur-xl bg-[#141329]/90 rounded-3xl p-6 border border-white/10 shadow-[0_8px_32px_rgba(76,59,204,0.3)]">
             <div className="mb-8">
               <h2 className="text-2xl font-light text-white tracking-wide text-center">
                 Playlist
@@ -211,12 +211,11 @@ export default function MusicPlayer({ isPlaying, setIsPlaying }: MusicPlayerProp
               {tracks.map((track, index) => (
                   <div
                       key={track.id}
-                      className="group backdrop-blur-lg bg-white/5 rounded-2xl p-4 border border-white/5 hover:border-[#ff4fa8]/50 hover:bg-white/10 transition-all"
-                      style={{
-                        animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both`,
-                      }}
+                      className="group backdrop-blur-lg bg-[#191736]/90 rounded-2xl p-4 border border-white/5 hover:border-[#ff4fa8]/50 hover:bg-[#221b3d] transition-all"
+                      style={{ animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both` }}
                   >
-                    <div className="flex items-center justify-between">
+
+                  <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-4 flex-1">
                     <span className="text-white/40 text-xs font-light w-6">
                       {String(track.id).padStart(2, '0')}
